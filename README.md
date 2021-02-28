@@ -23,7 +23,7 @@
 | Column         | Type       | Options           |
 | -------------- | ---------- | ----------------- |
 | product_name   | string     | null:false        |
-| category_id    | string     | null:false        |
+| category_id    | integer    | null:false        |
 | price          | integer    | null:false        |
 | description    | text       | null:false        |
 | status_id      | integer    | null:false        |
@@ -65,4 +65,3 @@
 ### Association
 
 - belongs_to : purchase
-- belongs_to : items
