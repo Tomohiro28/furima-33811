@@ -20,17 +20,17 @@
 
 ## itemsテーブル
 
-| Column         | Type       | Options    |
-| -------------- | ---------- | ---------- |
-| product_name   | string     | null:false |
-| category_id    | string     | null:false |
-| price          | integer    | null:false |
-| description    | text       | null:false |
-| status_id      | integer    | null:false |
-| shippingfee_id | integer    | null:false |
-| area_id        | integer    | null:false |
-| shippingday_id | integer    | null:false |
-| user           | references | null:false |
+| Column         | Type       | Options           |
+| -------------- | ---------- | ----------------- |
+| product_name   | string     | null:false        |
+| category_id    | string     | null:false        |
+| price          | integer    | null:false        |
+| description    | text       | null:false        |
+| status_id      | integer    | null:false        |
+| shippingfee_id | integer    | null:false        |
+| area_id        | integer    | null:false        |
+| shippingday_id | integer    | null:false        |
+| user           | references | foreign_key: true |
 
 ### Association
 
@@ -39,10 +39,10 @@
 
 ## purchasesテーブル
 
-| Column      | Type       | Options    |
-| ----------- | ---------- | ---------- |
-| item        | references | null:false |
-| user        | references | null:false |
+| Column      | Type       | Options           |
+| ----------- | ---------- | ----------------- |
+| item        | references | foreign_key: true |
+| user        | references | foreign_key: true |
 
 ### Association
 
@@ -52,16 +52,17 @@
 
 ## shippingsテーブル
 
-| Column         | Type       | Options    |
-| -------------- | ---------- | ---------- |
-| yuubin         | string     | null:false |
-| todouhuken     | string     | null:false |
-| sichouson      | string     | null:false |
-| banti          | string     | null:false |
-| tatemono       | string     |            |
-| denwa          | string     | null:false |
-| purchase       | references | null:false |
+| Column         | Type       | Options           |
+| -------------- | ---------- | ----------------- |
+| post           | string     | null:false        |
+| area_id        | integer    | null:false        |
+| city           | string     | null:false        |
+| address        | string     | null:false        |
+| building       | string     |                   |
+| phone          | string     | null:false        |
+| purchase       | references | foreign_key: true |
 
 ### Association
 
 - belongs_to : purchase
+- belongs_to : items
