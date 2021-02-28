@@ -17,22 +17,20 @@
 
 - has_many : items
 - has_many : purchases
-- has_many : shippings
 
 ## itemsテーブル
 
-| Column         | Type     | Options    |
-| -------------- | -------- | ---------- |
-| syouhin_name   | string   | null:false |
-| category       | string   | null:false |
-| price          | integer  | null:false |
-| setumei        | text     | null:false |
-| zyoutai_id        | integer  | null:false |
-| souryou_id        | integer  | null:false |
-| hassouname_id    | integer  | null:false |
-| hassouday_id     | integer  | null:false |
-| syupin_id      | integer  |            |
-| kounyuu_id     | integer  |            |
+| Column         | Type       | Options    |
+| -------------- | ---------- | ---------- |
+| product_name   | string     | null:false |
+| category_id    | string     | null:false |
+| price          | integer    | null:false |
+| description    | text       | null:false |
+| status_id      | integer    | null:false |
+| shippingfee_id | integer    | null:false |
+| area_id        | integer    | null:false |
+| shippingday_id | integer    | null:false |
+| user           | references | null:false |
 
 ### Association
 
@@ -43,7 +41,7 @@
 
 | Column      | Type       | Options    |
 | ----------- | ---------- | ---------- |
-| items       | references | null:false |
+| item        | references | null:false |
 | user        | references | null:false |
 
 ### Association
@@ -54,14 +52,15 @@
 
 ## shippingsテーブル
 
-| Column         | Type    | Options    |
-| -------------- | ------- | ---------- |
-| yuubin         | string  | null:false |
-| todouhuken     | string  | null:false |
-| sichouson      | string  | null:false |
-| banti          | string  | null:false |
-| tatemono       | string  |            |
-| denwa          | string  | null:false |
+| Column         | Type       | Options    |
+| -------------- | ---------- | ---------- |
+| yuubin         | string     | null:false |
+| todouhuken     | string     | null:false |
+| sichouson      | string     | null:false |
+| banti          | string     | null:false |
+| tatemono       | string     |            |
+| denwa          | string     | null:false |
+| purchase       | references | null:false |
 
 ### Association
 
