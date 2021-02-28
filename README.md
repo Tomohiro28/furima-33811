@@ -27,10 +27,10 @@
 | category       | string   | null:false |
 | price          | integer  | null:false |
 | setumei        | text     | null:false |
-| zyoutai        | integer  | null:false |
-| souryou        | integer  | null:false |
-| hassou_name    | integer  | null:false |
-| hassou_day     | integer  | null:false |
+| zyoutai_id        | integer  | null:false |
+| souryou_id        | integer  | null:false |
+| hassouname_id    | integer  | null:false |
+| hassouday_id     | integer  | null:false |
 | syupin_id      | integer  |            |
 | kounyuu_id     | integer  |            |
 
@@ -41,10 +41,10 @@
 
 ## purchasesテーブル
 
-| Column         | Type    | Options    |
-| -------------- | ------- | ---------- |
-| items.id       | integer | null:false |
-| user.id        | integer | null:false |
+| Column      | Type       | Options    |
+| ----------- | ---------- | ---------- |
+| items       | references | null:false |
+| user        | references | null:false |
 
 ### Association
 
