@@ -4,14 +4,15 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-
+  with_options presence: true do
+    validates :nickname
+    validates :last_name,      format: {with: /\A[ぁ-んァ-ン一-龥]/}
+    validates :first_name,     format: {with: /\A[ぁ-んァ-ン一-龥]/}
+    validates :birthday
+    validates :last_hurigana,  format: {with: /\A[ァ-ヶー－]+\z/}
+    validates :first_hurigana, format: {with: /\A[ァ-ヶー－]+\z/}
+  end
   validates :email,                 uniqueness: true
   validates :password,              presence: true,format:{with: /(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]/}
   validates :password_confirmation, presence: true,format:{with: /(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]/}  
-  validates :nickname,              presence: true
-  validates :last_name,             presence: true
-  validates :first_name,            presence: true
-  validates :birthday,              presence: true
-  validates :last_hurigana,         presence: true
-  validates :first_hurigana,        presence: true
 end

@@ -73,8 +73,18 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
       end
-      it 'passwordが半角英語のみだと登録できない' do
+      it 'passwordが英語のみだと登録できない' do
         @user.password = "aaaaaa"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password is invalid")
+      end
+      it 'passwordが数字のみだと登録できない' do
+        @user.password = "111111"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password is invalid")
+      end
+      it 'passwprdが全角だと登録できない' do
+        @user.password = "テスト１２３"
         @user.valid?
         expect(@user.errors.full_messages).to include("Password is invalid")
       end
@@ -88,6 +98,16 @@ RSpec.describe User, type: :model do
         another_user = FactoryBot.build(:user)
         another_user.valid?
         expect(another_user.errors.full_messages).to include("Email has already been taken")
+      end
+      it 'フリガナ(名字)は半角だと登録できない' do
+        @user.last_hurigana = "yamada"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Last hurigana is invalid")
+      end
+      it 'フリガナ(名前)は半角だと登録できない' do
+        @user.first_hurigana = "tarou"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("First hurigana is invalid")
       end
     end
     
