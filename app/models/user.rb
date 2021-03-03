@@ -6,8 +6,8 @@ class User < ApplicationRecord
 
 
   validates :email,                 uniqueness: true
-  validates :password,              confirmation: true
-  validates :password_confirmation, presence: true  
+  validates :password,              presence: true,format:{with: /(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]/}
+  validates :password_confirmation, presence: true,format:{with: /(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]/}  
   validates :nickname,              presence: true
   validates :last_name,             presence: true
   validates :first_name,            presence: true
