@@ -84,11 +84,10 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("Email is invalid")
       end
       it '重複したemailが存在する場合登録できないこと' do
-        binding.pry
         @user.save
         another_user = FactoryBot.build(:user)
         another_user.valid?
-
+        expect(another_user.errors.full_messages).to include("Email has already been taken")
       end
     end
     
