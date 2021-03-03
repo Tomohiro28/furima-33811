@@ -6,13 +6,15 @@ class User < ApplicationRecord
 
   with_options presence: true do
     validates :nickname
-    validates :last_name,      format: {with: /\A[ぁ-んァ-ン一-龥]/}
-    validates :first_name,     format: {with: /\A[ぁ-んァ-ン一-龥]/}
+    validates :last_name,      format: {with: /\A[ぁ-んァ-ン一-龥々]/}
+    validates :first_name,     format: {with: /\A[ぁ-んァ-ン一-龥々]/}
     validates :birthday
     validates :last_hurigana,  format: {with: /\A[ァ-ヶー－]+\z/}
     validates :first_hurigana, format: {with: /\A[ァ-ヶー－]+\z/}
   end
-  validates :email,                 uniqueness: true
-  validates :password,              presence: true,format:{with: /(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]/}
-  validates :password_confirmation, presence: true,format:{with: /(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]/}  
+  with_options presence: true,format:{with: /(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]/} do
+    validates :password
+    validates :password_confirmation  
+  end
+    validates :email,                 uniqueness: true
 end
