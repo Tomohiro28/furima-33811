@@ -1,17 +1,22 @@
 class PurchasesController < ApplicationController
   def index
-    # binding.pry
-    @purchase = PurchaseShipping.new(purchase_params)
+    @purchase_shipping = PurchaseShipping.new
   end
 
   def create
-    binding.pry
     @purchase_shipping = PurchaseShipping.new(purchase_params)
+    binding.pry  
+    if @purchase_shipping.valid?
+      @purchase_shipping.save
+      redirect_to root_path
+    else
+      render :index
+    end
   end
 
   private
   def purchase_params
-    params.permit(:purchase_shipping).permit(:post,:area_id,:city,:address,:building,:phone)
-    .merge(user_id: current_user.id)
+    params.require(:purchase_shipping).permit(:post,:area_id,:city,:address,:building,:phone)
+    .merge(user_id: current_user.id,item_id: params[:item_id])
   end
 end

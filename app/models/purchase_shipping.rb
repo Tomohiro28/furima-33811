@@ -4,14 +4,13 @@ class PurchaseShipping
                 :phone,:purchase_id
 
   with_options presence: true do
-    validates :item
-    validates :user
-    validates :post
-    validates :area_id
+    validates :item_id
+    validates :user_id
+    validates :post,    format:{with: /\A\d{3}[-]\d{4}\z/}
+    validates :area_id, numericality: { other_than: 1 }
     validates :city
     validates :address
-    validates :phone
-    validates :purchase
+    validates :phone,   format:{with: /\A\d{11}\z/}
   end
 
   def save
