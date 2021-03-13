@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :items
+  has_many :purchases
 
   with_options presence: true do
     validates :nickname
@@ -18,5 +19,5 @@ class User < ApplicationRecord
     validates :password
     validates :password_confirmation  
   end
-    validates :email,                 uniqueness: true
+    validates :email,                 uniqueness: { case_sensitive:  true }
 end
