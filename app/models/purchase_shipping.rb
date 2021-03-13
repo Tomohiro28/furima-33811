@@ -10,7 +10,7 @@ class PurchaseShipping
     validates :area_id, numericality: { other_than: 1 }
     validates :city
     validates :address
-    validates :phone,   format:{with: /\A\d{11}\z/}
+    validates :phone,   format:{with: /\A0[5789]0[-]?\d{4}[-]?\d{4}\z/}
     validates :token
   end
 

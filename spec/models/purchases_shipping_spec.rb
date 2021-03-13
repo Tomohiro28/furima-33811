@@ -54,10 +54,25 @@ RSpec.describe  PurchaseShipping, type: :model do
         @purchase_shipping.valid?
         expect(@purchase_shipping.errors.full_messages).to include("Phone is invalid")
       end
+      it '電話番号が英数字混合だと保存できない' do
+        @purchase_shipping.phone = "090123aaa"
+        @purchase_shipping.valid?
+        expect(@purchase_shipping.errors.full_messages).to include("Phone is invalid")
+      end
       it 'tokenが空だと保存できない' do
         @purchase_shipping.token = nil
         @purchase_shipping.valid?
         expect(@purchase_shipping.errors.full_messages).to include("Token can't be blank")
+      end
+      it 'item_idが空だと保存できない' do
+        @purchase_shipping.item_id = ""
+        @purchase_shipping.valid?
+        expect(@purchase_shipping.errors.full_messages).to include("Item can't be blank")
+      end
+      it 'user_idが空だと保存できない' do
+        @purchase_shipping.user_id = ""
+        @purchase_shipping.valid?
+        expect(@purchase_shipping.errors.full_messages).to include("User can't be blank")
       end
     end
   end

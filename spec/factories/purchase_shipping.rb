@@ -5,7 +5,7 @@ FactoryBot.define do
     city        {'新宿'}
     address     {'北千住'}
     building    {'原宿'}
-    phone       {12345678901}
+    phone       {'09045678901'}
     purchase_id {1}
     token       {"tok_abcdefghijk00000000000000000"}
   end
