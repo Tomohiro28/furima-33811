@@ -8,8 +8,9 @@ class PurchasesController < ApplicationController
   end
 
   def create
-    @purchase_shipping = PurchaseShipping.new(purchase_params)  
+    @purchase_shipping = PurchaseShipping.new(purchase_params)
     if @purchase_shipping.valid?
+      pay_item
       @purchase_shipping.save
       redirect_to root_path
     else
@@ -31,5 +32,14 @@ class PurchasesController < ApplicationController
     if current_user.id == @item.user_id
       redirect_to root_path 
     end
+  end
+
+  def pay_item
+    Payjp.api_key = "sk_test_3bcb0bb954152fd5d9727582"
+      Payjp::Charge.create(
+        amount: @item[:price],
+        card: purchase_params[:token],
+        currency: 'jpy'
+      )
   end
 end
