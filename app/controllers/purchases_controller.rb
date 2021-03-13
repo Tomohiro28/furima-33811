@@ -2,6 +2,7 @@ class PurchasesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_item,          only: [:index,:create]
   before_action :move_to_index
+  before_action :sold_out_item
 
   def index
     @purchase_shipping = PurchaseShipping.new
@@ -42,4 +43,11 @@ class PurchasesController < ApplicationController
         currency: 'jpy'
       )
   end
+
+  def sold_out_item
+    if @item.purchase.present?
+      redirect_to root_path
+    end
+  end
+
 end
